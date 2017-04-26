@@ -12,11 +12,6 @@ public class Player extends Character{
 	public Player(int x,int y)
 	{
 		super(x,y);
-		setWalkable(false);
-		inBase = true;
-		inHome = false;
-		inDungeon1 = false;
-		inDungeon2 = false;
 		lvl = 1;
 		int lvls = 4;
 		while(lvls>0)
@@ -38,24 +33,27 @@ public class Player extends Character{
 		}
 		health = maxHealth;
 		setExp(0);
-		//add image
 		//equip = new Weapon(1,"Rusty Sword",0,ImageIO.read(new File("File name of rusty sword")));
 	}
 	
-	private int maxHealth = 20;
+	private int maxHealth = 10;
 	private int health;
-	private int att = 2;
-	private int def = 2;
+	private int att = 1;
+	private int def = 1;
 	private int mana;
 	private int lvl;
 	private int exp;
-	private BufferedImage image;
 	private Weapon equip;
-	private Consumable[] consumables = new Consumable[10];
-	private boolean inBase;
-	private boolean inHome;
-	private boolean inDungeon1;
-	private boolean inDungeon2;
+	
+	public void setStats(int maxHP, int att, int def, int mana, int lvl, int exp)
+	{
+		this.maxHealth=maxHP;
+		this.att=att;
+		this.def=def;
+		this.mana=mana;
+		this.lvl=lvl;
+		this.exp=exp;
+	}
 	
 	public void takeDamage(int damage)
 	{
@@ -180,60 +178,12 @@ public class Player extends Character{
 		}
 	}
 
-	public BufferedImage getImage() {
-		return image;
-	}
-
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-
-	public Consumable[] getConsumables() {
-		return consumables;
-	}
-
-	public void setConsumables(Consumable[] consumables) {
-		this.consumables = consumables;
-	}
-
 	public Weapon getEquip() {
 		return equip;
 	}
 
 	public void setEquip(Weapon equip) {
 		this.equip = equip;
-	}
-
-	public boolean getInBase() {
-		return inBase;
-	}
-
-	public void setInBase(boolean inBase) {
-		this.inBase = inBase;
-	}
-
-	public boolean getInHome() {
-		return inHome;
-	}
-
-	public void setInHome(boolean inHome) {
-		this.inHome = inHome;
-	}
-
-	public boolean getInDungeon1() {
-		return inDungeon1;
-	}
-
-	public void setInDungeon1(boolean inDungeon1) {
-		this.inDungeon1 = inDungeon1;
-	}
-
-	public boolean getInDungeon2() {
-		return inDungeon2;
-	}
-
-	public void setInDungeon2(boolean inDungeon2) {
-		this.inDungeon2 = inDungeon2;
 	}
 
 	public int getExp() {

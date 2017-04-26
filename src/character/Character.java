@@ -1,6 +1,7 @@
 package character;
 
 import java.awt.image.BufferedImage;
+import java.util.TreeMap;
 
 public class Character {
 	public Character(int x, int y)
@@ -9,11 +10,9 @@ public class Character {
 		this.setY(y);
 	}
 	
-	public BufferedImage getImage() {
-		return image;
-	}
-	public void setImage(BufferedImage image) {
-		this.image = image;
+	public BufferedImage getImage(String key)
+	{
+		return images.get(key);
 	}
 
 	public int getX() {
@@ -32,15 +31,7 @@ public class Character {
 		this.y = y;
 	}
 
-	public boolean getWalkable() {
-		return walkable;
-	}
-
-	public void setWalkable(boolean walkable) {
-		this.walkable = walkable;
-	}
-
-	private BufferedImage image;
+	private TreeMap<String, BufferedImage> images;
 	private int x;
 	private int y;
 	private boolean walkable;
