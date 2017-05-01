@@ -1,0 +1,2 @@
+GSN,4,2,Char_Up,Char_Right,Char_Down,Char_Left,Attack_Up,Attack_Right,Attack_Down,Attack_Left,Images/Char.PNG
+SSN,4,Shoot_Down,Shoot_Left,Shoot_Up,Shoot_Right,Images/ShootyStar.PNG

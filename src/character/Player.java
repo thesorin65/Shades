@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Player extends Character{
+public class Player extends Unit{
 	
 	public Player(int x,int y)
 	{
@@ -33,6 +33,8 @@ public class Player extends Character{
 		}
 		health = maxHealth;
 		setExp(0);
+		setDirection(this.UP);
+		attackCounter = maxAttackCounter;
 		//equip = new Weapon(1,"Rusty Sword",0,ImageIO.read(new File("File name of rusty sword")));
 	}
 	
@@ -44,6 +46,9 @@ public class Player extends Character{
 	private int lvl;
 	private int exp;
 	private Weapon equip;
+	
+	private int attackCounter;
+	public static int maxAttackCounter = 50;
 	
 	public void setStats(int maxHP, int att, int def, int mana, int lvl, int exp)
 	{
@@ -192,5 +197,16 @@ public class Player extends Character{
 
 	public void setExp(int exp) {
 		this.exp = exp;
+	}
+
+	public boolean tryAttack()
+	{
+		attackCounter--;
+		if(attackCounter==0)
+		{
+			attackCounter = maxAttackCounter;
+			return true;
+		}
+		return false;
 	}
 }

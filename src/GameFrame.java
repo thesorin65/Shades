@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
 
-	public GameFrame()
+	public GameFrame() throws Exception
 	{
 		super("RapartLi Dungeon of Secrets");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
