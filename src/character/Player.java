@@ -13,28 +13,10 @@ public class Player extends Unit{
 	{
 		super(x,y);
 		lvl = 1;
-		int lvls = 4;
-		while(lvls>0)
-		{
-			double ran = Math.random();
-			if(ran<0.3)
-			{
-				att++;
-			}
-			else if(ran<0.6)
-			{
-				def++;
-			}
-			else
-			{
-				maxHealth+=10;
-			}
-			lvls--;
-		}
+		//set stats
 		health = maxHealth;
 		setExp(0);
 		setDirection(this.UP);
-		attackCounter = maxAttackCounter;
 		//equip = new Weapon(1,"Rusty Sword",0,ImageIO.read(new File("File name of rusty sword")));
 	}
 	
@@ -46,9 +28,12 @@ public class Player extends Unit{
 	private int lvl;
 	private int exp;
 	private Weapon equip;
-	
-	private int attackCounter;
-	public static int maxAttackCounter = 50;
+
+	private int direction;
+	public static int UP = 0;
+	public static int RIGHT = 1;
+	public static int DOWN = 2;
+	public static int LEFT = 3;
 	
 	public void setStats(int maxHP, int att, int def, int mana, int lvl, int exp)
 	{
@@ -68,6 +53,16 @@ public class Player extends Unit{
 	public void gainExp(int exp)
 	{
 		this.setExp(this.getExp() + exp);
+	}
+
+	public int getDirection()
+	{
+		return direction;
+	}
+
+	public void setDirection(int direction)
+	{
+		this.direction = direction;
 	}
 	
 	public int getHealth()
@@ -197,16 +192,5 @@ public class Player extends Unit{
 
 	public void setExp(int exp) {
 		this.exp = exp;
-	}
-
-	public boolean tryAttack()
-	{
-		attackCounter--;
-		if(attackCounter==0)
-		{
-			attackCounter = maxAttackCounter;
-			return true;
-		}
-		return false;
 	}
 }

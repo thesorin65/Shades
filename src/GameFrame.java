@@ -10,7 +10,7 @@ public class GameFrame extends JFrame {
 
 	public GameFrame() throws Exception
 	{
-		super("RapartLi Dungeon of Secrets");
+		super("Shades");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		pack();

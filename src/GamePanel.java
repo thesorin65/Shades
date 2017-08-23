@@ -1,4 +1,3 @@
-import map.*;
 import character.*;
 import character.Unit;
 
@@ -54,7 +53,6 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
 		Thread t = new Thread(this);
 		t.start();
 	}
-	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	private ImageManager manager = new ImageManager();
 	
@@ -92,18 +90,6 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
 				bg.drawImage(player.getImage("Char_Left"), player.getX(), player.getY(), null);
 			if(player.getDirection()==player.RIGHT)
 				bg.drawImage(player.getImage("Char_Right"), player.getX(), player.getY(), null);
-		}
-		
-		for(Projectile p:projectiles)
-		{
-			if(p.getDirection()==Unit.UP)
-				bg.drawImage(p.getImage("Up"), p.getX(), p.getY(), null);
-			if(p.getDirection()==Unit.RIGHT)
-				bg.drawImage(p.getImage("Right"), p.getX(), p.getY(), null);
-			if(p.getDirection()==Unit.DOWN)
-				bg.drawImage(p.getImage("Down"), p.getX(), p.getY(), null);
-			if(p.getDirection()==Unit.LEFT)
-				bg.drawImage(p.getImage("Left"), p.getX(), p.getY(), null);
 		}
 		
 		g.drawImage(buffer,0,0,null);
@@ -180,53 +166,29 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Run
 			while(true)
 			{
 				Thread.sleep(7);
-				if(keys.get('W')&&player.getY()>0)
+				if(keys.get('W'))
 				{
-					player.setY(player.getY()-1);
+					if(player.getY()>-25)
+						player.setY(player.getY()-1);
 					player.setDirection(player.UP);
 				}
-				if(keys.get('S')&&player.getY()+50<getHeight())
+				if(keys.get('S'))
 				{
-					player.setY(player.getY()+1);
+					if(player.getY()+75<getHeight())
+						player.setY(player.getY()+1);
 					player.setDirection(player.DOWN);
 				}
-				if(keys.get('A')&&player.getX()>0)
+				if(keys.get('A'))
 				{
-					player.setX(player.getX()-1);
+					if(player.getX()>-25)
+						player.setX(player.getX()-1);
 					player.setDirection(player.LEFT);
 				}
-				if(keys.get('D')&&player.getX()+50<getWidth())
+				if(keys.get('D'))
 				{
-					player.setX(player.getX()+1);
+					if(player.getX()+75<getWidth())
+						player.setX(player.getX()+1);
 					player.setDirection(player.RIGHT);
-				}
-				if(keys.get(' ')&&player.tryAttack())
-				{
-					Projectile p = new Projectile(player.getX()+25,player.getY()+25);
-					p.addImage("Up", manager.getImage("Shoot_Up"));
-					p.addImage("Left", manager.getImage("Shoot_Left"));
-					p.addImage("Down", manager.getImage("Shoot_Down"));
-					p.addImage("Right", manager.getImage("Shoot_Right"));
-					
-					if(player.getDirection()==Unit.UP)
-						p.setDirection(Unit.UP);
-					if(player.getDirection()==Unit.RIGHT)
-						p.setDirection(Unit.RIGHT);
-					if(player.getDirection()==Unit.DOWN)
-						p.setDirection(Unit.DOWN);
-					if(player.getDirection()==Unit.LEFT)
-						p.setDirection(Unit.LEFT);
-					
-					projectiles.add(p);
-				}
-				
-				for(int x = 0;x<projectiles.size();x++)
-				{
-					Projectile p = projectiles.get(x);
-					if(p.getX()<0-50||p.getX()>getWidth()||p.getY()<0-50||p.getY()>getHeight())
-					{
-						projectiles.remove(p);
-					}
 				}
 				repaint();
 			}

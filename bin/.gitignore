@@ -1,7 +1,3 @@
-/Game.class
-/GameFrame.class
-/GamePanel.class
-/ImageManager.class
-/character/
-/items/
+/Map.class
 /map/
+/character/
